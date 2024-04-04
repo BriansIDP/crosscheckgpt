@@ -1,16 +1,32 @@
-SelfCheckGPT
+CrossCheckGPT
 =====================================================
-[![arxiv](https://img.shields.io/badge/arXiv-2303.08896-b31b1b.svg)](https://arxiv.org/abs/2303.08896)
-[![PyPI version selfcheckgpt](https://badge.fury.io/py/selfcheckgpt.svg?kill_cache=1)](https://pypi.python.org/pypi/selfcheckgpt/)
-[![Downloads](https://pepy.tech/badge/selfcheckgpt)](https://pepy.tech/project/selfcheckgpt)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-- Project page for our paper "[SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models](https://arxiv.org/abs/2303.08896)"
-- We investigated several variants of the selfcheck approach: BERTScore, Question-Answering, n-gram, NLI, and LLM-Prompting. 
-- [Nov 2023] SelfCheckGPT-NLI Calibration Analysis thanks to Daniel Huynh [\[Link to Article\]](https://huggingface.co/blog/dhuynh95/automatic-hallucination-detection)
-- [Oct 2023] The paper is accepted and to appear at EMNLP 2023 [\[Poster\]](https://drive.google.com/file/d/1EzQ3MdmrF0gM-83UV2OQ6_QR1RuvhJ9h/view?usp=drive_link)
-- [Aug 2023] Slides from ML Collective Talk [\[Link to Slides\]](https://drive.google.com/file/d/13LUBPUm4y1nlKigZxXHn7Cl2lw5KuGbc/view)
 
-![](demo/selfcheck_qa_prompt.png)
+## New Files
+```
+# Perform crosscheck on GPT-3 generated response against crosscheckLLMs, e.g. "mistral", "llama2", "vicuna", "zephyr", "beluga"
+LLMcrosscheck.py
+
+# Calculate diversity for any generated passages
+LLMdiversity.py
+
+# Perform crosscheck on one target LLM (given via sys.argv) against crosscheckLLMs, e.g. "mistral", "llama2", "vicuna", "zephyr", "beluga"
+LLMranking.py
+
+# Script to compare all different LLMs crosscheck scores
+compare.py
+
+# Script to compute average diversity across paragraphs
+compute_diversity.py
+
+# Script to compute correlation between selfcheck, crosscheck and refcheck
+correlation.py
+
+# Additional prompts and templates for LLM prompting
+selfcheckgpt/prompts.py
+templates.py
+```
+
+Please modify the paths in those files to load the LLM from the correct place.
 
 ## Code/Package
 
