@@ -72,7 +72,7 @@ for bioidx, text_samples in zip(*[wiki_bio_test_idx, gpt3_text_samples]):
 for bioidx, text_samples in zip(*[wiki_bio_test_idx, wiki_bio_text]):
     wikibio_ref[str(bioidx)] = text_samples
 
-crosscheckLLMs = ["mistral", "llama2", "vicuna", "zephyr", "beluga"]
+crosscheckLLMs = ["mistral", "llama2", "vicuna", "zephyr", "beluga", "llama"]
 # crosscheckLLMs = []
 
 if target_LLM not in crosscheckLLMs and target_LLM != "gpt3":
