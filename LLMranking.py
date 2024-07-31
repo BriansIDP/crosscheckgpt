@@ -6,9 +6,9 @@ import spacy
 from datasets import load_dataset
 from tqdm import tqdm
 
-from selfcheckgpt.modeling_selfcheck import SelfCheckNLI, SelfCheckLLMPrompt
-from selfcheckgpt.modeling_selfcheck import CrossCheckQuestionsLLMPrompt
-from selfcheckgpt.prompts import *
+from crosscheckgpt.modeling_crosscheck import CrossCheckLLMPrompt
+from crosscheckgpt.modeling_crosscheck import CrossCheckQuestionsLLMPrompt
+from crosscheckgpt.prompts import *
 
 
 target_LLM = sys.argv[1]
@@ -49,10 +49,10 @@ nlp = spacy.load("en_core_web_sm")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 llm_model = "mistralai/Mistral-7B-Instruct-v0.2"
 cache_dir = "/home/gs534/rds/rds-t2-cs164-KQ4S3rlDzm8/gs534/LLMknowledge/cache/"
-implicit = True
+implicit = False
 
 if not implicit:
-    selfcheck = SelfCheckLLMPrompt(llm_model, device, cache_dir=cache_dir)
+    selfcheck = CrossCheckLLMPrompt(llm_model, device, cache_dir=cache_dir)
     # selfcheck_nli = SelfCheckNLI(device=device, cache_dir=cache_dir)
 # else:
 #     selfcheck = CrossCheckQuestionsLLMPrompt(llm_model, device, cache_dir=cache_dir, cot=False)
@@ -72,7 +72,7 @@ for bioidx, text_samples in zip(*[wiki_bio_test_idx, gpt3_text_samples]):
 for bioidx, text_samples in zip(*[wiki_bio_test_idx, wiki_bio_text]):
     wikibio_ref[str(bioidx)] = text_samples
 
-crosscheckLLMs = ["mistral", "llama2", "vicuna", "zephyr", "beluga", "llama"]
+crosscheckLLMs = ["mistral", "llama2", "vicuna", "zephyr", "beluga", "starling", "openorca", "llama2lm"]
 # crosscheckLLMs = []
 
 if target_LLM not in crosscheckLLMs and target_LLM != "gpt3":
@@ -132,6 +132,7 @@ else:
                     sentences = sentences,
                     sampled_passages = LLM_text_samples,
                 )
+                import pdb; pdb.set_trace()
                 new_result[LLMtype] = sent_scores_prompt
             
             results.append(new_result)

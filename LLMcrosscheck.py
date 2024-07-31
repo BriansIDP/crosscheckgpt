@@ -4,9 +4,9 @@ import spacy
 from datasets import load_dataset
 from tqdm import tqdm
 
-from selfcheckgpt.modeling_selfcheck import SelfCheckNLI, SelfCheckLLMPrompt
-from selfcheckgpt.modeling_selfcheck import CrossCheckQuestionsLLMPrompt
-from selfcheckgpt.prompts import *
+from crosscheckgpt.modeling_crosscheck import CrossCheckLLMPrompt
+from crosscheckgpt.modeling_crosscheck import CrossCheckQuestionsLLMPrompt
+from crosscheckgpt.prompts import *
 
 template_dict = {
     "mistral": mistral,

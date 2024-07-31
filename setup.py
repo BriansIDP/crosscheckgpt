@@ -24,22 +24,22 @@ CLASSIFIERS = [
 ]
 
 VERSION = {}
-with open("selfcheckgpt/version.py", "r") as version_file:
+with open("crosscheckgpt/version.py", "r") as version_file:
     exec(version_file.read(), VERSION)
 
 # calling the setup function
 setup(
-    name='selfcheckgpt',
+    name='crosscheckgpt',
     version=VERSION["__version__"],
-    description='SelfCheckGPT: Assessing text-based responses from LLMs',
+    description='CrossCheckGPT: Universal Hallucination Ranking for Multimodal Foundation Models'
     long_description=long_description,
     url='https://github.com/potsawee/selfcheckgpt',
-    author='Potsawee Manakul',
+    author='Brian Sun and Potsawee Manakul',
     author_email='m.potsawee@gmail.com',
     license='MIT',
-    packages=['selfcheckgpt'],
+    packages=['crosscheckgpt'],
     classifiers=CLASSIFIERS,
     install_requires=REQUIREMENTS,
-    keywords='selfcheckgpt',
+    keywords='crosscheckgpt',
     include_package_data=True,
 )
