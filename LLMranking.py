@@ -47,9 +47,9 @@ model_paths = {
 
 nlp = spacy.load("en_core_web_sm")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-llm_model = "mistralai/Mistral-7B-Instruct-v0.2"
+llm_model = "/home/gs534/rds/rds-t2-cs164-KQ4S3rlDzm8/gs534/LLMweakTOstrong/ckpt/llama-2-7b-chat-hf"
 cache_dir = "/home/gs534/rds/rds-t2-cs164-KQ4S3rlDzm8/gs534/LLMknowledge/cache/"
-implicit = True
+implicit = False
 
 if not implicit:
     selfcheck = SelfCheckLLMPrompt(llm_model, device, cache_dir=cache_dir)
@@ -136,5 +136,5 @@ else:
             
             results.append(new_result)
 
-with open("outputs/crosscheck_prompt_{}{}.json".format(target_LLM, "_implicit" if implicit else ""), "w") as fout:
+with open("outputs/crosscheck_prompt_{}{}_llama2judge.json".format(target_LLM, "_implicit" if implicit else ""), "w") as fout:
     json.dump(results, fout, indent=4)
